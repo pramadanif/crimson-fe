@@ -20,8 +20,8 @@ export default function CallToAction() {
           viewport={{ once: true }}
           className="text-5xl md:text-6xl font-display font-bold text-white mb-8 tracking-tight"
         >
-          Start Automating the <br />
-          <span className="text-gold-400">Blockchain</span> Today.
+          Start Building <br />
+          <span className="text-gold-400">in Crimson</span>
         </motion.h2>
 
         <motion.p
@@ -31,7 +31,7 @@ export default function CallToAction() {
           transition={{ delay: 0.2 }}
           className="text-xl text-white/80 mb-12 max-w-2xl mx-auto"
         >
-          Join 500+ developers and enterprises building the next generation of automated dApps.
+          Automate more. Stress less. Ship faster.
         </motion.p>
 
         <motion.div

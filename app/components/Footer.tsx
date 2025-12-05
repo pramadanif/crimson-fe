@@ -18,12 +18,12 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-bold mb-6 text-gold-400">Platform</h4>
+          <h4 className="font-bold mb-6 text-gold-400">Product</h4>
           <ul className="space-y-4 text-sm text-white/70">
             <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Docs</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">API</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
           </ul>
         </div>
 
@@ -33,12 +33,16 @@ export default function Footer() {
             <li><a href="#" className="hover:text-white transition-colors">About</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="font-bold mb-6 text-gold-400">Connect</h4>
+          <h4 className="font-bold mb-6 text-gold-400">Support</h4>
+          <ul className="space-y-4 text-sm text-white/70 mb-6">
+            <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#" className="hover:text-white transition-colors">Discord</a></li>
+          </ul>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors">
               <Twitter className="w-5 h-5" />
@@ -53,10 +57,10 @@ export default function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs text-white/40">
-        <p>© 2024 CasperFlow. All rights reserved.</p>
+        <p>© 2024 Crimson. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
         </div>
       </div>
     </footer>
