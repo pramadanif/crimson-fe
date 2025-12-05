@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, Eye, TrendingUp, Shield, Sparkles } from 'lucide-react';
+import { Rocket, Eye, TrendingUp, Shield, Sparkles, Zap } from 'lucide-react';
 
 export default function WhyCrimson() {
     const reasons = [
@@ -30,6 +30,11 @@ export default function WhyCrimson() {
             icon: <Sparkles className="w-6 h-6" />,
             title: 'Modern UI',
             description: 'Bold crimson aesthetic, built for clarity and speed.'
+        },
+        {
+            icon: <Zap className="w-6 h-6" />,
+            title: 'Lightning fast',
+            description: 'Optimized performance for real-time automation.'
         }
     ];
 
