@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FDFBF7;
+  --foreground: #1A1A1A;
+  --wine-900: #662222;
+  --wine-800: #842A3B;
+  --wine-700: #A3485A;
+  --gold-400: #F5DAA7;
+  --gold-500: #E0C090;
+  --surface-50: #FDFBF7;
+  --surface-100: #F5F2ED;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-wine-900: var(--wine-900);
+  --color-wine-800: var(--wine-800);
+  --color-wine-700: var(--wine-700);
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-surface-50: var(--surface-50);
+  --color-surface-100: var(--surface-100);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-orbitron: var(--font-orbitron);
+  --font-display: var(--font-orbitron);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
