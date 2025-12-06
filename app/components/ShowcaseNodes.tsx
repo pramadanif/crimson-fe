@@ -16,8 +16,8 @@ const nodeCategories = [
     {
         title: "AI Nodes",
         badge: "NEW",
-        gradient: "from-emerald-400 to-teal-500",
-        icon: <Brain className="w-6 h-6 text-white" />,
+        gradient: "from-[#F5DAA7] to-[#E6B980]",
+        icon: <Brain className="w-6 h-6 text-[#2D1B22]" />,
         description: "Smart processing layer powered by on-chain AI models.",
         nodes: [
             { name: "AI Classifier", desc: "Categorize events & data" },
@@ -30,8 +30,8 @@ const nodeCategories = [
     },
     {
         title: "Trigger Nodes",
-        gradient: "from-rose-500 to-pink-600",
-        icon: <Zap className="w-6 h-6 text-white" />,
+        gradient: "from-[#F5DAA7] to-[#E6B980]",
+        icon: <Zap className="w-6 h-6 text-[#2D1B22]" />,
         description: "Start workflows based on chain or external events.",
         nodes: [
             { name: "Wallet Event", desc: "Transfer, Approval, Balance" },
@@ -42,8 +42,8 @@ const nodeCategories = [
     },
     {
         title: "Logic Nodes",
-        gradient: "from-amber-400 to-orange-500",
-        icon: <Cpu className="w-6 h-6 text-white" />,
+        gradient: "from-[#F5DAA7] to-[#E6B980]",
+        icon: <Cpu className="w-6 h-6 text-[#2D1B22]" />,
         description: "Process, filter, and transform data.",
         nodes: [
             { name: "Filter", desc: "Conditional if/else logic" },
@@ -55,8 +55,8 @@ const nodeCategories = [
     },
     {
         title: "Cross-Chain",
-        gradient: "from-blue-500 to-indigo-600",
-        icon: <Globe className="w-6 h-6 text-white" />,
+        gradient: "from-[#F5DAA7] to-[#E6B980]",
+        icon: <Globe className="w-6 h-6 text-[#2D1B22]" />,
         description: "Crimson's signature messaging layer.",
         nodes: [
             { name: "To Casper", desc: "Send message to Casper" },
@@ -66,8 +66,8 @@ const nodeCategories = [
     },
     {
         title: "Action Nodes",
-        gradient: "from-purple-500 to-violet-600",
-        icon: <Send className="w-6 h-6 text-white" />,
+        gradient: "from-[#F5DAA7] to-[#E6B980]",
+        icon: <Send className="w-6 h-6 text-[#2D1B22]" />,
         description: "Execute transactions on destination chains.",
         nodes: [
             { name: "Exec Contract", desc: "Call smart contract function" },
@@ -78,8 +78,8 @@ const nodeCategories = [
     },
     {
         title: "Off-Chain Utility",
-        gradient: "from-cyan-400 to-sky-500",
-        icon: <Database className="w-6 h-6 text-white" />,
+        gradient: "from-[#F5DAA7] to-[#E6B980]",
+        icon: <Database className="w-6 h-6 text-[#2D1B22]" />,
         description: "Bridge Web3 with Web2 tools.",
         nodes: [
             { name: "Notification", desc: "Telegram, Email, Discord" },
