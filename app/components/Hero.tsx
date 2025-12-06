@@ -50,92 +50,158 @@ const StaggeredText = ({ text, className = "", delay = 0 }: { text: string; clas
   );
 };
 
-// 2. Ilustrasi Node (Sedikit dipercantik)
-const NodeIllustration = () => (
-  <svg viewBox="0 0 400 300" className="w-full h-auto drop-shadow-[0_0_30px_rgba(245,218,167,0.3)]">
-    <defs>
-      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#A3485A" stopOpacity="0.1" />
-        <stop offset="50%" stopColor="#F5DAA7" stopOpacity="1" />
-        <stop offset="100%" stopColor="#A3485A" stopOpacity="0.1" />
-      </linearGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-        <feMerge>
-          <feMergeNode in="coloredBlur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
+// 2. Busy Node Network Animation
+const BusyNodeNetwork = () => {
+  // Generate random positions for a "crowded" look but controllable
+  // We'll have layers: Triggers (left), Logic/AI (center), Actions (right)
 
-    {/* Connecting Lines */}
-    <motion.path
-      d="M50 150 C 100 150, 100 80, 150 80 L 250 80"
-      fill="none"
-      stroke="url(#lineGradient)"
-      strokeWidth="2"
-      initial={{ pathLength: 0, opacity: 0 }}
-      animate={{ pathLength: 1, opacity: 1 }}
-      transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-    />
-    <motion.path
-      d="M50 150 C 100 150, 100 220, 150 220 L 250 220"
-      fill="none"
-      stroke="url(#lineGradient)"
-      strokeWidth="2"
-      initial={{ pathLength: 0, opacity: 0 }}
-      animate={{ pathLength: 1, opacity: 1 }}
-      transition={{ duration: 1.5, ease: "easeInOut", delay: 0.8 }}
-    />
+  const nodes = [
+    // Triggers
+    { id: 't1', type: 'trigger', label: 'Wallet Event', x: 50, y: 80, color: '#A3485A' },
+    { id: 't2', type: 'trigger', label: 'Webhook', x: 50, y: 160, color: '#A3485A' },
+    { id: 't3', type: 'trigger', label: 'Schedule', x: 50, y: 240, color: '#A3485A' },
 
-    {/* Nodes Group */}
-    <g filter="url(#glow)">
-      {/* Trigger Node */}
-      <motion.rect
-        x="20" y="120" width="60" height="60" rx="16"
-        fill="#A3485A"
-        initial={{ scale: 0, rotate: -10 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ type: "spring", bounce: 0.5, delay: 0.2 }}
-      />
-      <motion.circle
-        cx="50" cy="150" r="8" fill="#F5DAA7"
-        animate={{ r: [8, 10, 8] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
+    // Logic / AI (The "Ramai" part)
+    { id: 'l1', type: 'logic', label: 'Filter', x: 180, y: 60, color: '#E6B980' },
+    { id: 'l2', type: 'ai', label: 'AI Sentiment', x: 180, y: 120, color: '#FFD700' }, // Gold for AI
+    { id: 'l3', type: 'logic', label: 'Transformer', x: 180, y: 200, color: '#E6B980' },
+    { id: 'l4', type: 'ai', label: 'AI Guardrail', x: 200, y: 260, color: '#FFD700' },
+    { id: 'l5', type: 'logic', label: 'Aggregator', x: 260, y: 90, color: '#E6B980' },
+    { id: 'l6', type: 'ai', label: 'AI Classifier', x: 260, y: 170, color: '#FFD700' },
 
-      {/* Logic Node Top */}
-      <motion.rect
-        x="240" y="50" width="130" height="60" rx="16"
-        fill="rgba(102, 34, 34, 0.8)" stroke="#A3485A" strokeWidth="2"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-      />
-      <text x="260" y="85" fill="#fff" fontSize="12" fontFamily="sans-serif" fontWeight="bold">Smart Contract</text>
+    // Actions
+    { id: 'a1', type: 'action', label: 'Exec Contract', x: 380, y: 70, color: '#662222' },
+    { id: 'a2', type: 'action', label: 'Notify User', x: 380, y: 150, color: '#662222' },
+    { id: 'a3', type: 'action', label: 'Cross-Chain', x: 380, y: 230, color: '#662222' },
+  ];
 
-      {/* Logic Node Bottom */}
-      <motion.rect
-        x="240" y="190" width="130" height="60" rx="16"
-        fill="rgba(102, 34, 34, 0.8)" stroke="#A3485A" strokeWidth="2"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 1.5 }}
-      />
-      <text x="260" y="225" fill="#fff" fontSize="12" fontFamily="sans-serif" fontWeight="bold">Transfer CSPR</text>
+  const connections = [
+    { from: 't1', to: 'l1' }, { from: 't1', to: 'l2' },
+    { from: 't2', to: 'l3' }, { from: 't3', to: 'l4' },
+    { from: 'l1', to: 'l5' }, { from: 'l2', to: 'l5' },
+    { from: 'l3', to: 'l6' }, { from: 'l4', to: 'a3' },
+    { from: 'l5', to: 'a1' }, { from: 'l6', to: 'a2' },
+    { from: 'l6', to: 'a3' },
+  ];
 
-      {/* Energy Particles */}
-      <motion.circle cx="150" cy="80" r="3" fill="#fff"
-        animate={{ offsetDistance: "100%", cx: [50, 250], opacity: [0, 1, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
-      />
-      <motion.circle cx="150" cy="220" r="3" fill="#fff"
-        animate={{ offsetDistance: "100%", cx: [50, 250], opacity: [0, 1, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 2.3 }}
-      />
-    </g>
-  </svg>
-);
+  return (
+    <svg viewBox="0 0 500 320" className="w-full h-auto drop-shadow-[0_0_30px_rgba(245,218,167,0.2)]">
+      <defs>
+        <linearGradient id="linePulse" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#A3485A" stopOpacity="0.2" />
+          <stop offset="50%" stopColor="#F5DAA7" stopOpacity="1" />
+          <stop offset="100%" stopColor="#A3485A" stopOpacity="0.2" />
+        </linearGradient>
+      </defs>
+
+      {/* Connections with animated particles */}
+      {connections.map((conn, i) => {
+        const start = nodes.find(n => n.id === conn.from);
+        const end = nodes.find(n => n.id === conn.to);
+        if (!start || !end) return null;
+
+        return (
+          <g key={i}>
+            <motion.path
+              d={`M ${start.x + 30} ${start.y + 15} C ${start.x + 80} ${start.y + 15}, ${end.x - 50} ${end.y + 15}, ${end.x} ${end.y + 15}`}
+              fill="none"
+              stroke="url(#linePulse)"
+              strokeWidth="1.5"
+              strokeOpacity="0.4"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.5, delay: i * 0.1 }}
+            />
+            {/* Fast Data Particles */}
+            <motion.circle r="2" fill="#fff">
+              <animateMotion
+                dur={`${1.5 + (i % 3) * 0.5}s`}
+                repeatCount="indefinite"
+                path={`M ${start.x + 30} ${start.y + 15} C ${start.x + 80} ${start.y + 15}, ${end.x - 50} ${end.y + 15}, ${end.x} ${end.y + 15}`}
+              />
+            </motion.circle>
+          </g>
+        );
+      })}
+
+      {/* Nodes */}
+      {nodes.map((node, i) => (
+        <motion.g
+          key={node.id}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            type: "spring",
+            delay: i * 0.1,
+            stiffness: 200,
+            damping: 15
+          }}
+          whileHover={{ scale: 1.1 }}
+        >
+          {/* Hover Glow */}
+          <motion.rect
+            x={node.x - 2} y={node.y - 2} width="84" height="34" rx="10"
+            fill={node.color}
+            opacity="0.3"
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+          />
+          {/* Main Node Body */}
+          <rect
+            x={node.x} y={node.y} width="80" height="30" rx="8"
+            fill="#2D1B22"
+            stroke={node.color}
+            strokeWidth="1.5"
+          />
+          {/* Node Label */}
+          <text x={node.x + 40} y={node.y + 19} textAnchor="middle" fill="#eee" fontSize="10" fontFamily="sans-serif" fontWeight="600" style={{ pointerEvents: 'none' }}>
+            {node.label}
+          </text>
+
+          {/* Status Dot */}
+          <motion.circle
+            cx={node.x + 70} cy={node.y + 10} r="2"
+            fill={node.type === 'ai' ? '#00ff88' : '#F5DAA7'}
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          />
+        </motion.g>
+      ))}
+
+      {/* Floating Particles for 'Amazing' effect */}
+      {/* Floating Particles for 'Amazing' effect */}
+      {/* Deterministic positions to prevent hydration errors */}
+      {[
+        { cx: 50, cy: 40, r: 1.5, d: 4, del: 0 },
+        { cx: 420, cy: 300, r: 2, d: 5, del: 1 },
+        { cx: 120, cy: 280, r: 1, d: 3.5, del: 2 },
+        { cx: 300, cy: 50, r: 1.8, d: 4.5, del: 0.5 },
+        { cx: 380, cy: 200, r: 1.2, d: 6, del: 1.5 },
+        { cx: 60, cy: 180, r: 2.2, d: 3.8, del: 2.5 },
+        { cx: 200, cy: 15, r: 0.8, d: 5.2, del: 3 },
+        { cx: 440, cy: 150, r: 1.4, d: 4.2, del: 1.2 }
+      ].map((p, i) => (
+        <motion.circle
+          key={`p-${i}`}
+          cx={p.cx}
+          cy={p.cy}
+          r={p.r}
+          fill="#E6B980"
+          opacity="0.5"
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0, 0.8, 0]
+          }}
+          transition={{
+            duration: p.d,
+            repeat: Infinity,
+            delay: p.del
+          }}
+        />
+      ))}
+    </svg>
+  );
+};
 
 export default function Hero() {
   // Rotating subtitles
@@ -277,7 +343,7 @@ export default function Hero() {
                 <div className="h-2 w-20 rounded-full bg-white/10" />
               </div>
 
-              <NodeIllustration />
+              <BusyNodeNetwork />
             </div>
 
             {/* Glow Behind Card */}
